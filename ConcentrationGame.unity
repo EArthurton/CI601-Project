@@ -932,7 +932,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 234703429}
-        m_MethodName: changeButton2
+        m_MethodName: ChangeButton2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1639,7 +1639,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 407955294}
-        m_MethodName: changeButton4
+        m_MethodName: ChangeButton4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5493,7 +5493,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1345151460}
-        m_MethodName: changeButton3
+        m_MethodName: ChangeButton3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6583,7 +6583,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1631775195}
-        m_MethodName: changeButton1
+        m_MethodName: ChangeButton1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
