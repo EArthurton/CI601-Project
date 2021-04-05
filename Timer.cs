@@ -20,13 +20,13 @@ public class Timer : MonoBehaviour
     {
         countUpTimer += Time.deltaTime;
         //timeRemaining -= Time.deltaTime;
-        //DisplayTime(timeRemaining);
+        DisplayTime(countUpTimer);
     }
 
-    /*void DisplayTime(float timeToDisplay)
+    void DisplayTime(float timeToDisplay)
     {
-        float minutes = Mathf.FloorToInt(timeRemaining / 60);
-        float seconds = Mathf.FloorToInt(timeRemaining % 60);
+        float minutes = Mathf.FloorToInt(countUpTimer / 60);
+        float seconds = Mathf.FloorToInt(countUpTimer % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }*/
+    }
 }
