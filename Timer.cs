@@ -14,12 +14,16 @@ public class Timer : MonoBehaviour
     {
         timeText = GameObject.Find("Time").GetComponent<Text>();
         timerIsRunning = true;
+
+        if (SceneName.previousLevel == "CInstructions")
+        {
+            countUpTimer = 0.0f;
+        }
     }
 
     void Update()
     {
         countUpTimer += Time.deltaTime;
-        //timeRemaining -= Time.deltaTime;
         DisplayTime(countUpTimer);
     }
 
