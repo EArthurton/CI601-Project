@@ -25,7 +25,6 @@ public class MLevels : MonoBehaviour
         for(int i = 0; i < sprites.Length; i++)
         {
             objectSprites.Add(sprites[i]);
-            Debug.Log(sprites[i]);
         }
 
         for(int i = 0; i < objects.Length; i++)

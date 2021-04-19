@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 
 public class MAnswer : MonoBehaviour
 {
-    private GameObject time, question, gameOver, inputField, aButton, fButton, nButton, yButton, ready, emptyAnswer;
-    private float countDownTimer, nextSceneTimer;
+    private GameObject timer, question, gameOver, inputField, aButton, fButton, nButton, yButton, ready, emptyAnswer, paused, pause, cont, menu;
+    private float countDownTimer, nextSceneTimer, temp;
     private Text timeText, gameOverText, inputText, answerText;
-    private string[] shapeNames;
     private List<string> userInput;
     public InputField input;
-    public Button answerButton, finishedButton, yesButton, noButton;
+    public Button answerButton, finishedButton, yesButton, noButton, pauseButton, contButton, menuButton;
+    private bool gamePaused, timerRunning;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class MAnswer : MonoBehaviour
 
         userInput = new List<string>();
 
-        time = GameObject.Find("Time");
+        timer = GameObject.Find("Time");
         question = GameObject.Find("Question");
         gameOver = GameObject.Find("Game Over");
         inputField = GameObject.Find("InputField");
@@ -32,19 +32,15 @@ public class MAnswer : MonoBehaviour
         yButton = GameObject.Find("Yes Button");
         ready = GameObject.Find("Ready");
         emptyAnswer = GameObject.Find("Empty Answer");
+        paused = GameObject.Find("Paused");
+        pause = GameObject.Find("Pause Button");
+        cont = GameObject.Find("Continue Button");
+        menu = GameObject.Find("Main Menu Button");
 
         inputText = GameObject.Find("User Input").GetComponent<Text>();
         answerText = GameObject.Find("Correct Answers").GetComponent<Text>();
-        timeText = time.GetComponent<Text>();
+        timeText = timer.GetComponent<Text>();
         gameOverText = gameOver.GetComponent<Text>();
-
-        shapeNames = new string[6];
-        shapeNames[0] = "Circle";
-        shapeNames[1] = "Heart";
-        shapeNames[2] = "Hexagon";
-        shapeNames[3] = "Pentagon";
-        shapeNames[4] = "Star";
-        shapeNames[5] = "Triangle";
 
         ready.SetActive(false);
         nButton.SetActive(false);
@@ -77,48 +73,49 @@ public class MAnswer : MonoBehaviour
             inputText.fontSize = 50;
             answerText.fontSize = 50;
         }
+
+        paused.SetActive(false);
+        cont.SetActive(false);
+        menu.SetActive(false);
+
+        gamePaused = false;
+        timerRunning = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeText != null)
+        if(gamePaused == false)
         {
-            countDownTimer -= Time.deltaTime;
-            DisplayTime(countDownTimer);
-        }
-
-        if(countDownTimer <= 0)
-        {
-            time.SetActive(false);
-            question.SetActive(false);
-            inputField.SetActive(false);
-            aButton.SetActive(false);
-
-            gameOverText.text = string.Format("Game Over!");
-
-            nextSceneTimer -= Time.deltaTime;
-            if (nextSceneTimer <= 0)
+            if (timeText != null)
             {
-                SceneManager.LoadScene("MInstructions");
+                if(timerRunning == true)
+                {
+                    countDownTimer -= Time.deltaTime;
+                    DisplayTime(countDownTimer);
+                }
+            }
+
+            if (countDownTimer <= 0)
+            {
+                timer.SetActive(false);
+                question.SetActive(false);
+                inputField.SetActive(false);
+                aButton.SetActive(false);
+
+                gameOverText.text = string.Format("Game Over!");
+
+                nextSceneTimer -= Time.deltaTime;
+                if (nextSceneTimer <= 0)
+                {
+                    SceneManager.LoadScene("Navigation");
+                }
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        answerButton.onClick.AddListener(StoreAnswers);
-        finishedButton.onClick.AddListener(FinishGame);
-        noButton.onClick.AddListener(BackToGame);
-        yesButton.onClick.AddListener(ShowAnswers);
-    }
-
-    private void OnDisable()
-    {
-        answerButton.onClick.RemoveListener(StoreAnswers);
-        finishedButton.onClick.RemoveListener(FinishGame);
-        noButton.onClick.RemoveListener(BackToGame);
-        yesButton.onClick.RemoveListener(ShowAnswers);
+        else if(gamePaused == true)
+        {
+            Debug.Log(countDownTimer);
+        }
     }
 
     public void StoreAnswers()
@@ -169,7 +166,7 @@ public class MAnswer : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MInstructions-v1");
+            SceneManager.LoadScene("Navigation");
         }
     }
 
@@ -185,7 +182,7 @@ public class MAnswer : MonoBehaviour
     {
         question.SetActive(false);
         inputField.SetActive(false);
-        time.SetActive(false);
+        timer.SetActive(false);
         aButton.SetActive(false);
         ready.SetActive(false);
         nButton.SetActive(false);
@@ -207,10 +204,75 @@ public class MAnswer : MonoBehaviour
         }
     }
 
+    public void PauseGame()
+    {
+        gamePaused = true;
+
+        paused.SetActive(true);
+        menu.SetActive(true);
+        cont.SetActive(true);
+
+        question.SetActive(false);
+        inputField.SetActive(false);
+        timer.SetActive(false);
+        aButton.SetActive(false);
+        fButton.SetActive(false);
+        timer.SetActive(false);
+        pause.SetActive(false);
+
+        timerRunning = false;
+    }
+
+    public void ContinueGame()
+    {
+        gamePaused = false;
+
+        paused.SetActive(false);
+        menu.SetActive(false);
+        cont.SetActive(false);
+
+        question.SetActive(true);
+        inputField.SetActive(true);
+        timer.SetActive(true);
+        aButton.SetActive(true);
+        fButton.SetActive(true);
+        timer.SetActive(true);
+        pause.SetActive(true);
+
+        timerRunning = true;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Navigation");
+    }
+
     void DisplayTime(float timeToDisplay)
     {
         float minutes = Mathf.FloorToInt(countDownTimer / 60);
         float seconds = Mathf.FloorToInt(countDownTimer % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private void OnEnable()
+    {
+        answerButton.onClick.AddListener(StoreAnswers);
+        finishedButton.onClick.AddListener(FinishGame);
+        noButton.onClick.AddListener(BackToGame);
+        yesButton.onClick.AddListener(ShowAnswers);
+        pauseButton.onClick.AddListener(PauseGame);
+        contButton.onClick.AddListener(ContinueGame);
+        menuButton.onClick.AddListener(BackToMenu);
+    }
+
+    private void OnDisable()
+    {
+        answerButton.onClick.RemoveListener(StoreAnswers);
+        finishedButton.onClick.RemoveListener(FinishGame);
+        noButton.onClick.RemoveListener(BackToGame);
+        yesButton.onClick.RemoveListener(ShowAnswers);
+        pauseButton.onClick.RemoveListener(PauseGame);
+        contButton.onClick.RemoveListener(ContinueGame);
+        menuButton.onClick.RemoveListener(BackToMenu);
     }
 }
