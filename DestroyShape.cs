@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyShape : MonoBehaviour
 {
     public static float circleTimer, crescentTimer, decagonTimer, heartTimer, heptagonTimer, hexagonTimer, nonagonTimer, octagonTimer, parallelogramTimer, pentagonTimer, rhombusTimer, septagonTimer, squareTimer, starTimer, trapeziumTimer, triangleTimer;
-    private bool clicked, circleClicked, crescentClicked, decagonClicked, heartClicked, heptagonClicked, hexagonClicked, nonagonClicked, octagonClicked, parallelogramClicked, pentagonClicked, rhombusClicked, septagonClicked, squareClicked, starClicked, trapeziumClicked, triangleClicked;
+    private bool circleClicked, crescentClicked, decagonClicked, heartClicked, heptagonClicked, hexagonClicked, nonagonClicked, octagonClicked, parallelogramClicked, pentagonClicked, rhombusClicked, septagonClicked, squareClicked, starClicked, trapeziumClicked, triangleClicked;
 
     private void Start()
     {
@@ -46,275 +46,278 @@ public class DestroyShape : MonoBehaviour
 
     void Update()
     {
-        if (SpawnShape.shapes[0].activeSelf == true)
+        if(SpawnShape.gamePaused == false)
         {
-            circleTimer -= Time.deltaTime;
-
-            if (circleTimer <= 0 || circleClicked == true)
+            if (SpawnShape.shapes[0].activeSelf == true)
             {
-                if (circleTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                circleTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[0].SetActive(false);
-                circleTimer = 3;
-                circleClicked = false;
+                if (circleTimer <= 0 || circleClicked == true)
+                {
+                    if (circleTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[0].SetActive(false);
+                    circleTimer = 3;
+                    circleClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[1].activeSelf == true)
-        {
-            crescentTimer -= Time.deltaTime;
-
-            if (crescentTimer <= 0 || crescentClicked == true)
+            if (SpawnShape.shapes[1].activeSelf == true)
             {
-                if (crescentTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                crescentTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[1].SetActive(false);
-                crescentTimer = 3;
-                crescentClicked = false;
+                if (crescentTimer <= 0 || crescentClicked == true)
+                {
+                    if (crescentTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[1].SetActive(false);
+                    crescentTimer = 3;
+                    crescentClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[2].activeSelf == true)
-        {
-            decagonTimer -= Time.deltaTime;
-
-            if (decagonTimer <= 0 || decagonClicked == true)
+            if (SpawnShape.shapes[2].activeSelf == true)
             {
-                if (decagonTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                decagonTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[2].SetActive(false);
-                decagonTimer = 3;
-                decagonClicked = false;
+                if (decagonTimer <= 0 || decagonClicked == true)
+                {
+                    if (decagonTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[2].SetActive(false);
+                    decagonTimer = 3;
+                    decagonClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[3].activeSelf == true)
-        {
-            heartTimer -= Time.deltaTime;
-
-            if (heartTimer <= 0 || heartClicked == true)
+            if (SpawnShape.shapes[3].activeSelf == true)
             {
-                if (heartTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                heartTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[3].SetActive(false);
-                heartTimer = 3;
-                heartClicked = false;
+                if (heartTimer <= 0 || heartClicked == true)
+                {
+                    if (heartTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[3].SetActive(false);
+                    heartTimer = 3;
+                    heartClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[4].activeSelf == true)
-        {
-            heptagonTimer -= Time.deltaTime;
-
-            if (heptagonTimer <= 0 || heptagonClicked == true)
+            if (SpawnShape.shapes[4].activeSelf == true)
             {
-                if (heptagonTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                heptagonTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[4].SetActive(false);
-                heptagonTimer = 3;
-                heptagonClicked = false;
+                if (heptagonTimer <= 0 || heptagonClicked == true)
+                {
+                    if (heptagonTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[4].SetActive(false);
+                    heptagonTimer = 3;
+                    heptagonClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[5].activeSelf == true)
-        {
-            hexagonTimer -= Time.deltaTime;
-
-            if (hexagonTimer <= 0 || hexagonClicked == true)
+            if (SpawnShape.shapes[5].activeSelf == true)
             {
-                if (hexagonTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                hexagonTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[5].SetActive(false);
-                hexagonTimer = 3;
-                hexagonClicked = false;
+                if (hexagonTimer <= 0 || hexagonClicked == true)
+                {
+                    if (hexagonTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[5].SetActive(false);
+                    hexagonTimer = 3;
+                    hexagonClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[6].activeSelf == true)
-        {
-            nonagonTimer -= Time.deltaTime;
-
-            if (nonagonTimer <= 0 || nonagonClicked == true)
+            if (SpawnShape.shapes[6].activeSelf == true)
             {
-                if (nonagonTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                nonagonTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[6].SetActive(false);
-                nonagonTimer = 3;
-                nonagonClicked = false;
+                if (nonagonTimer <= 0 || nonagonClicked == true)
+                {
+                    if (nonagonTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[6].SetActive(false);
+                    nonagonTimer = 3;
+                    nonagonClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[7].activeSelf == true)
-        {
-            octagonTimer -= Time.deltaTime;
-
-            if (octagonTimer <= 0 || octagonClicked == true)
+            if (SpawnShape.shapes[7].activeSelf == true)
             {
-                if (octagonTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                octagonTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[7].SetActive(false);
-                octagonTimer = 3;
-                octagonClicked = false;
+                if (octagonTimer <= 0 || octagonClicked == true)
+                {
+                    if (octagonTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[7].SetActive(false);
+                    octagonTimer = 3;
+                    octagonClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[8].activeSelf == true)
-        {
-            parallelogramTimer -= Time.deltaTime;
-
-            if (parallelogramTimer <= 0 || parallelogramClicked == true)
+            if (SpawnShape.shapes[8].activeSelf == true)
             {
-                if (parallelogramTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                parallelogramTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[8].SetActive(false);
-                parallelogramTimer = 3;
-                parallelogramClicked = false;
+                if (parallelogramTimer <= 0 || parallelogramClicked == true)
+                {
+                    if (parallelogramTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[8].SetActive(false);
+                    parallelogramTimer = 3;
+                    parallelogramClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[9].activeSelf == true)
-        {
-            pentagonTimer -= Time.deltaTime;
-
-            if (pentagonTimer <= 0 || pentagonClicked == true)
+            if (SpawnShape.shapes[9].activeSelf == true)
             {
-                if (pentagonTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                pentagonTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[9].SetActive(false);
-                pentagonTimer = 3;
-                pentagonClicked = false;
+                if (pentagonTimer <= 0 || pentagonClicked == true)
+                {
+                    if (pentagonTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[9].SetActive(false);
+                    pentagonTimer = 3;
+                    pentagonClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[10].activeSelf == true)
-        {
-            rhombusTimer -= Time.deltaTime;
-
-            if (rhombusTimer <= 0 || rhombusClicked == true)
+            if (SpawnShape.shapes[10].activeSelf == true)
             {
-                if (rhombusTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                rhombusTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[10].SetActive(false);
-                rhombusTimer = 3;
-                rhombusClicked = false;
+                if (rhombusTimer <= 0 || rhombusClicked == true)
+                {
+                    if (rhombusTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[10].SetActive(false);
+                    rhombusTimer = 3;
+                    rhombusClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[11].activeSelf == true)
-        {
-            septagonTimer -= Time.deltaTime;
-
-            if (septagonTimer <= 0 || septagonClicked == true)
+            if (SpawnShape.shapes[11].activeSelf == true)
             {
-                if (septagonTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                septagonTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[11].SetActive(false);
-                septagonTimer = 3;
-                septagonClicked = false;
+                if (septagonTimer <= 0 || septagonClicked == true)
+                {
+                    if (septagonTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[11].SetActive(false);
+                    septagonTimer = 3;
+                    septagonClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[12].activeSelf == true)
-        {
-            squareTimer -= Time.deltaTime;
-
-            if (squareTimer <= 0 || squareClicked == true)
+            if (SpawnShape.shapes[12].activeSelf == true)
             {
-                if (squareTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                squareTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[12].SetActive(false);
-                squareTimer = 3;
-                squareClicked = false;
+                if (squareTimer <= 0 || squareClicked == true)
+                {
+                    if (squareTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[12].SetActive(false);
+                    squareTimer = 3;
+                    squareClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[13].activeSelf == true)
-        {
-            starTimer -= Time.deltaTime;
-
-            if (starTimer <= 0 || starClicked == true)
+            if (SpawnShape.shapes[13].activeSelf == true)
             {
-                if (starTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                starTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[13].SetActive(false);
-                starTimer = 3;
-                starClicked = false;
+                if (starTimer <= 0 || starClicked == true)
+                {
+                    if (starTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[13].SetActive(false);
+                    starTimer = 3;
+                    starClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[14].activeSelf == true)
-        {
-            trapeziumTimer -= Time.deltaTime;
-
-            if (trapeziumTimer <= 0 || trapeziumClicked == true)
+            if (SpawnShape.shapes[14].activeSelf == true)
             {
-                if (trapeziumTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                trapeziumTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[14].SetActive(false);
-                trapeziumTimer = 3;
-                trapeziumClicked = false;
+                if (trapeziumTimer <= 0 || trapeziumClicked == true)
+                {
+                    if (trapeziumTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[14].SetActive(false);
+                    trapeziumTimer = 3;
+                    trapeziumClicked = false;
+                }
             }
-        }
 
-        if (SpawnShape.shapes[15].activeSelf == true)
-        {
-            triangleTimer -= Time.deltaTime;
-
-            if (triangleTimer <= 0 || triangleClicked == true)
+            if (SpawnShape.shapes[15].activeSelf == true)
             {
-                if (triangleTimer > 0)
-                {
-                    SpawnShape.score += 1;
-                }
+                triangleTimer -= Time.deltaTime;
 
-                SpawnShape.shapes[15].SetActive(false);
-                triangleTimer = 3;
-                triangleClicked = false;
+                if (triangleTimer <= 0 || triangleClicked == true)
+                {
+                    if (triangleTimer > 0)
+                    {
+                        SpawnShape.score += 1;
+                    }
+
+                    SpawnShape.shapes[15].SetActive(false);
+                    triangleTimer = 3;
+                    triangleClicked = false;
+                }
             }
         }
     }

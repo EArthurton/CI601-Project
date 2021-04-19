@@ -9,14 +9,14 @@ using UnityEngine.SceneManagement;
 public class SpawnShape : MonoBehaviour
 {
     public static GameObject[] shapes;
-    public GameObject shapeParent, timer, scoreObject;
-    [XmlAttribute("score")]
+    private GameObject timer, scoreObject, pause, paused, cont, menu, shapeParent;
     public static int score;
     private int randomIndex;
-    private float countDownTimer, delayTimer;
+    public float countDownTimer, delayTimer;
     private Button[] buttons;
-    public Button pause;
+    public Button pauseButton, contButton, menuButton;
     private Text timeText, scoreText;
+    public static bool gamePaused;
 
     void Start()
     {
@@ -24,8 +24,16 @@ public class SpawnShape : MonoBehaviour
         delayTimer = 4;
         countDownTimer = 300;
 
-        timeText = GameObject.Find("Time").GetComponent<Text>();
-        scoreText = GameObject.Find("Score").GetComponent<Text>();
+        timer = GameObject.Find("Time");
+        scoreObject = GameObject.Find("Score");
+        paused = GameObject.Find("Paused");
+        pause = GameObject.Find("Pause Button");
+        cont = GameObject.Find("Continue Button");
+        menu = GameObject.Find("Main Menu Button");
+        shapeParent = GameObject.Find("Shapes");
+
+        timeText = timer.GetComponent<Text>();
+        scoreText = scoreObject.GetComponent<Text>();
 
         shapes = new GameObject[16];
         shapes[0] = GameObject.Find("Shapes/Circle");
@@ -67,14 +75,24 @@ public class SpawnShape : MonoBehaviour
         {
             shapes[i].SetActive(false);
         }
+
+        paused.SetActive(false);
+        cont.SetActive(false);
+        menu.SetActive(false);
+        shapeParent.SetActive(true);
+
+        gamePaused = false;
     }
 
     void Update()
     {
         scoreText.text = "Score: " + score;
 
-        countDownTimer -= Time.deltaTime;
-        delayTimer -= Time.deltaTime;
+        if(gamePaused == false)
+        {
+            countDownTimer -= Time.deltaTime;
+            delayTimer -= Time.deltaTime;
+        }
 
         DisplayTime(countDownTimer);
 
@@ -130,149 +148,185 @@ public class SpawnShape : MonoBehaviour
             }
         }
 
-        if (shapes[0].activeSelf == true)
+        if(gamePaused == false)
         {
-            shapes[0].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[0].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[0].activeSelf == true)
+            {
+                shapes[0].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[0].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[1].activeSelf == true)
-        {
-            shapes[1].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[1].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[1].activeSelf == true)
+            {
+                shapes[1].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[1].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[2].activeSelf == true)
-        {
-            shapes[2].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[2].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[2].activeSelf == true)
+            {
+                shapes[2].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[2].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[3].activeSelf == true)
-        {
-            shapes[3].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[3].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[3].activeSelf == true)
+            {
+                shapes[3].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[3].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[4].activeSelf == true)
-        {
-            shapes[4].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[4].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[4].activeSelf == true)
+            {
+                shapes[4].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[4].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[5].activeSelf == true)
-        {
-            shapes[5].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[5].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[5].activeSelf == true)
+            {
+                shapes[5].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[5].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[6].activeSelf == true)
-        {
-            shapes[6].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[6].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[6].activeSelf == true)
+            {
+                shapes[6].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[6].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[7].activeSelf == true)
-        {
-            shapes[7].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[7].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[7].activeSelf == true)
+            {
+                shapes[7].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[7].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[8].activeSelf == true)
-        {
-            shapes[8].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[8].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[8].activeSelf == true)
+            {
+                shapes[8].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[8].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[9].activeSelf == true)
-        {
-            shapes[9].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[9].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[9].activeSelf == true)
+            {
+                shapes[9].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[9].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[10].activeSelf == true)
-        {
-            shapes[10].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[10].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[10].activeSelf == true)
+            {
+                shapes[10].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[10].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[11].activeSelf == true)
-        {
-            shapes[11].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[11].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[11].activeSelf == true)
+            {
+                shapes[11].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[11].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[12].activeSelf == true)
-        {
-            shapes[12].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[12].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[12].activeSelf == true)
+            {
+                shapes[12].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[12].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[13].activeSelf == true)
-        {
-            shapes[13].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[13].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[13].activeSelf == true)
+            {
+                shapes[13].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[13].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[14].activeSelf == true)
-        {
-            shapes[14].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
-        }
-        else
-        {
-            shapes[14].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            if (shapes[14].activeSelf == true)
+            {
+                shapes[14].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[14].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
 
-        if (shapes[15].activeSelf == true)
-        {
-            shapes[15].transform.localScale += new Vector3(0.005f, 0.005f, 0.0f);
+            if (shapes[15].activeSelf == true)
+            {
+                shapes[15].transform.localScale += new Vector3(0.005f, 0.005f, 0);
+            }
+            else
+            {
+                shapes[15].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            }
         }
-        else
-        {
-            shapes[15].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        }
+    }
+
+    public void PauseGame()
+    {
+        gamePaused = true;
+
+        paused.SetActive(true);
+        menu.SetActive(true);
+        cont.SetActive(true);
+
+        timer.SetActive(false);
+        scoreObject.SetActive(false);
+        shapeParent.SetActive(false);
+        pause.SetActive(false);
+    }
+
+    public void ContinueGame()
+    {
+        gamePaused = false;
+
+        paused.SetActive(false);
+        menu.SetActive(false);
+        cont.SetActive(false);
+
+        timer.SetActive(true);
+        scoreObject.SetActive(true);
+        shapeParent.SetActive(true);
+        pause.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Navigation");
     }
 
     void DisplayTime(float timeToDisplay)
@@ -280,5 +334,19 @@ public class SpawnShape : MonoBehaviour
         float minutes = Mathf.FloorToInt(countDownTimer / 60);
         float seconds = Mathf.FloorToInt(countDownTimer % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private void OnEnable()
+    {
+        pauseButton.onClick.AddListener(PauseGame);
+        contButton.onClick.AddListener(ContinueGame);
+        menuButton.onClick.AddListener(BackToMenu);
+    }
+
+    private void OnDisable()
+    {
+        pauseButton.onClick.RemoveListener(PauseGame);
+        contButton.onClick.RemoveListener(ContinueGame);
+        menuButton.onClick.RemoveListener(BackToMenu);
     }
 }
