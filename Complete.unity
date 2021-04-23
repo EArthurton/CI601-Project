@@ -356,8 +356,12 @@ MonoBehaviour:
   menuButton: {fileID: 1919660317}
   cInstructions: {fileID: 289763008}
   mInstructions: {fileID: 289763008}
+  sInstructions: {fileID: 289763008}
   cStart: {fileID: 289763008}
   mStart: {fileID: 289763008}
+  sStart: {fileID: 289763008}
+  cont: {fileID: 289763008}
+  paused: {fileID: 289763008}
 --- !u!1 &1295287454
 GameObject:
   m_ObjectHideFlags: 0
