@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
@@ -32,7 +31,7 @@ public class Buttons : MonoBehaviour
         buttons[3].GetComponent<Image>().sprite = sprites[3];
     }
 
-    public void changeButton1()
+    public void ChangeButton1()
     {
         if(buttons[0].GetComponent<Image>().sprite == sprites[4])
         {
@@ -44,7 +43,7 @@ public class Buttons : MonoBehaviour
         }
     }
 
-    public void changeButton2()
+    public void ChangeButton2()
     {
         if (buttons[1].GetComponent<Image>().sprite == sprites[2])
         {
@@ -56,7 +55,7 @@ public class Buttons : MonoBehaviour
         }
     }
 
-    public void changeButton3()
+    public void ChangeButton3()
     {
         if (buttons[2].GetComponent<Image>().sprite == sprites[2])
         {
@@ -68,7 +67,7 @@ public class Buttons : MonoBehaviour
         }
     }
 
-    public void changeButton4()
+    public void ChangeButton4()
     {
         if (buttons[3].GetComponent<Image>().sprite == sprites[4])
         {
@@ -78,25 +77,5 @@ public class Buttons : MonoBehaviour
         {
             buttons[3].GetComponent<Image>().sprite = sprites[4];
         }
-    }
-
-    public void StartConcentration()
-    {
-        SceneManager.LoadScene("ConcentrationGame");
-    }
-
-    public void StartMemory()
-    {
-        SceneManager.LoadScene("Memory1-1");
-    }
-
-    public void InstructionScreen()
-    {
-        SceneManager.LoadScene("CInstructions");
-    }
-
-    void Update()
-    {
-
     }
 }
