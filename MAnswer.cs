@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class MAnswer : MonoBehaviour
 {
-    private GameObject timer, question, gameOver, inputField, aButton, fButton, nButton, yButton, ready, emptyAnswer, paused, pause, cont, menu;
+    private GameObject timer, question, gameOver, inputField, aButton, fButton, nButton, yButton, ready, emptyAnswer, paused, pause, cont, menu, answers, correctAnswers, inputAnswers;
     private float countDownTimer, nextSceneTimer, temp;
     private Text timeText, gameOverText, inputText, answerText;
     private List<string> userInput;
@@ -36,6 +36,9 @@ public class MAnswer : MonoBehaviour
         pause = GameObject.Find("Pause Button");
         cont = GameObject.Find("Continue Button");
         menu = GameObject.Find("Main Menu Button");
+        answers = GameObject.Find("Answer Text");
+        correctAnswers = GameObject.Find("Correct Answers");
+        inputAnswers = GameObject.Find("User Input");
 
         inputText = GameObject.Find("User Input").GetComponent<Text>();
         answerText = GameObject.Find("Correct Answers").GetComponent<Text>();
@@ -46,29 +49,29 @@ public class MAnswer : MonoBehaviour
         nButton.SetActive(false);
         yButton.SetActive(false);
         emptyAnswer.SetActive(false);
+        answers.SetActive(false);
 
         if (SceneName.previousLevel == "MLevel1")
         {
-            countDownTimer = 60;
+            countDownTimer = 90;
         }
         else if (SceneName.previousLevel == "MLevel2")
         {
-            countDownTimer = 50;
+            countDownTimer = 80;
 
             inputText.fontSize = 70;
             answerText.fontSize = 70;
         }
         else if (SceneName.previousLevel == "MLevel3")
         {
-            countDownTimer = 40;
+            countDownTimer = 70;
 
             inputText.fontSize = 60;
             answerText.fontSize = 60;
-
         }
         else if (SceneName.previousLevel == "MLevel4")
         {
-            countDownTimer = 30;
+            countDownTimer = 60;
 
             inputText.fontSize = 50;
             answerText.fontSize = 50;
@@ -188,6 +191,7 @@ public class MAnswer : MonoBehaviour
         nButton.SetActive(false);
         yButton.SetActive(false);
         fButton.SetActive(true);
+        answers.SetActive(true);
 
         inputText.text = "Your answers:\n";
 
@@ -219,6 +223,8 @@ public class MAnswer : MonoBehaviour
         fButton.SetActive(false);
         timer.SetActive(false);
         pause.SetActive(false);
+        correctAnswers.SetActive(false);
+        inputAnswers.SetActive(false);
 
         timerRunning = false;
     }
@@ -231,15 +237,24 @@ public class MAnswer : MonoBehaviour
         menu.SetActive(false);
         cont.SetActive(false);
 
-        question.SetActive(true);
-        inputField.SetActive(true);
-        timer.SetActive(true);
-        aButton.SetActive(true);
-        fButton.SetActive(true);
-        timer.SetActive(true);
-        pause.SetActive(true);
+        if(answers.activeSelf == false)
+        {
+            question.SetActive(true);
+            inputField.SetActive(true);
+            timer.SetActive(true);
+            aButton.SetActive(true);
+            fButton.SetActive(true);
+            timer.SetActive(true);
+            pause.SetActive(true);
 
-        timerRunning = true;
+            timerRunning = true;
+        }
+        else if(answers.activeSelf == true)
+        {
+            correctAnswers.SetActive(true);
+            inputAnswers.SetActive(true);
+            fButton.SetActive(true);
+        }
     }
 
     public void BackToMenu()
